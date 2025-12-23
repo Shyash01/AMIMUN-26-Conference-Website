@@ -1,0 +1,28 @@
+# Node / package managers (if used in the future)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE/editor configs
+.vscode/
+.idea/
+
+# Build / dist folders (if generated later)
+dist/
+build/
+
+# Temporary / backup files
+*.bak
+*.tmp
+
+# Excel or data files (optional)
+# Uncomment the line below if you do NOT want Excel files on GitHub
+# *.xlsx
+# *.xls

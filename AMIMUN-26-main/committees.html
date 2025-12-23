@@ -1,0 +1,759 @@
+<!-- committees.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Committees - AMIMUN 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .committees-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .committee-section {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .committee-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .committee-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .committees-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .committee-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .committee-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .committee-card:hover .committee-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .committee-card-front,
+        .committee-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .committee-logo {
+            width: 120px;
+            height: 120px;
+            background: #f5f7fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* ensures image doesn't spill outside */
+        }
+
+        .committee-logo i {
+            font-size: 50px;
+            color: var(--primary-color);
+        }
+
+        .committee-card-back {
+            background: var(--primary-color);
+            color: white;
+            transform: rotateY(180deg);
+            padding: 25px;
+        }
+
+        .committee-card-back h3 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .committee-card-back p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .btn-committee {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-committee:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        /* Animation Delays */
+        .committee-section:nth-child(1) { animation-delay: 0.2s; }
+        .committee-section:nth-child(2) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .committees-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .committee-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            /* Mobile navbar logo and AMIMUN'26 text size */
+            .navbar .logo img {
+                height: 30px !important;
+                width: auto !important;
+            }
+            .navbar .logo span {
+                font-size: 1.1rem !important;
+            }
+
+            /* Mobile footer styles */
+            .footer-content {
+                flex-direction: column !important;
+                padding: 20px 15px !important;
+            }
+            .footer-about, .footer-links {
+                min-width: 100% !important;
+                margin: 0 0 25px 0 !important;
+                text-align: center;
+            }
+            .footer-links {
+                margin-left: 0 !important;
+                margin-top: 15px !important;
+            }
+            .footer-bottom p {
+                text-align: center !important;
+                font-size: 0.9rem !important;
+                padding: 0 10px !important;
+                line-height: 1.5 !important;
+            }
+            .footer h3 {
+                margin-bottom: 15px !important;
+                font-size: 1.3rem !important;
+            }
+            .footer p, .footer a {
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+            }
+            .footer-links ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 10px;
+            }
+            .footer-links li {
+                margin: 0 10px 10px 0 !important;
+            }
+        }
+        .committee-card-front h3 {
+        color: var(--primary-color);
+        transition: color 0.3s ease;
+        margin-top: 15px;
+    }
+
+    .committee-card:hover .committee-card-front h3 {
+        color: white;
+    }
+
+    .committee-logo {
+        width: 120px;
+        height: 120px;
+        background: #f5f7fa;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .committee-card:hover .committee-logo {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .committee-logo img {
+        max-width: 80%;
+        max-height: 80%;
+        object-fit: contain;
+    }
+
+    .committee-logo i {
+        font-size: 50px;
+        color: var(--primary-color);
+        transition: color 0.3s ease;
+    }
+
+    .committee-card:hover .committee-logo i {
+        color: white;
+    }
+
+    .committee-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        height: 320px; /* Slightly taller to accommodate logo */
+    }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Page header animation */
+    .page-header {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+    }
+
+    /* Animate the underline */
+    .page-header h1::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 4px;
+        background: var(--accent-color);
+        transition: width 0.5s ease;
+    }
+
+
+    /* Committee cards animation */
+    .committee-section {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* Delay animations for each section */
+    .committee-section:nth-child(1) { animation-delay: 0.2s; }
+    .committee-section:nth-child(2) { animation-delay: 0.4s; }
+
+    /* Card hover effects */
+    .committee-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .committee-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* Logo hover effect */
+    .committee-logo {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .committee-card:hover .committee-logo {
+        transform: scale(1.1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* Button hover effect */
+    .btn-committee {
+        transition: all 0.3s ease;
+        transform: translateY(0);
+        display: inline-block;
+    }
+
+    .btn-committee:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Text color transition */
+    .committee-card h3 {
+        transition: color 0.3s ease;
+    }
+
+    /* Smooth scroll behavior */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    
+    </style>
+</head>
+<body>
+      <!-- Navigation -->
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+        <a href="#" class="logo">
+            <img src="images/home/Amity_University_logo.png" alt="Amity University Logo" style="height: 40px; width: auto; margin-right: 10px; vertical-align: middle;">
+            <span style="vertical-align: middle;">AMIMUN'26</span>
+          </a>
+      <div class="nav-toggle" id="navToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item dropdown">
+          <a href="#about" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="why-amimun.html">Why AMIMUN</a></li>
+            <li><a href="beyond-amimun.html">Beyond AMIMUN</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
+            <li><a href="chronicles.html">AMIMUN Chronicles</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#team" class="nav-link">Our Team <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="guiding-light.html">Our Guiding Light</a></li>
+            <li><a href="advisory-board.html">Advisory Board</a></li>
+            <li><a href="secretariat.html">Secretariat</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="committees.html" class="nav-link">Committees</a></li>
+        <li class="nav-item"><a href="matrix.html" class="nav-link">Matrix</a></li>
+        <li class="nav-item"><a href="club.html" class="nav-link">Club</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<!-- Page Header -->
+<header class="page-header" style="
+    background: linear-gradient(135deg, #1451a0 0%, #114171 100%), 
+                url('images/committees-bg.jpg') no-repeat center center/cover;
+    color: white;
+    padding: 180px 0 120px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
+">
+    <div class="container" style="
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+    ">
+        <h1 style="
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+            padding-bottom: 20px;
+            color: white;
+        ">
+            Our Committees
+            <span style="
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 120px;
+                height: 4px;
+                background: #1282A2;
+                border-radius: 2px;
+            "></span>
+        </h1>
+        <p style="
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin: 20px auto 0;
+            max-width: 700px;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+            color: white;
+        ">
+            Explore the diverse range of committees at AMIMUN 2025, each offering unique opportunities for debate, diplomacy, and personal growth.
+        </p>
+    </div>
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHJlY3Qgd2lkdGg9IjUwJSIgaGVpZ2h0PSI1MCUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=');
+        opacity: 0.2;
+        z-index: 1;
+    "></div>
+</header>
+
+    <!-- Committees Section -->
+    <div class="committees-container">
+        <!-- Online Committees -->
+        <section class="committee-section">
+            <h2>Online Committees</h2>
+            <div class="committees-grid">
+                <!-- ECOSOC -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/ecosoc.png" alt="ECOSOC Logo">
+                                <i class="fas fa-globe-americas" style="display: none;"></i>
+                            </div>
+                            <h3>ECOSOC</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>ECOSOC</h3>
+                            <p style="color: white;">United Nations Economic and Social Council</p>
+                            <a href="committees/ecosoc.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WHO -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/WHO.png" alt="WHO Logo">
+                                <i class="fas fa-heartbeat" style="display: none;"></i>
+                            </div>
+                            <h3>WHO</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>WHO</h3>
+                            <p style="color: white;">World Health Organization</p>
+                            <a href="committees/who.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- UNODC -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/UNODC.png" alt="UNODC Logo">
+                                <i class="fas fa-balance-scale" style="display: none;"></i>
+                            </div>
+                            <h3>UNODC</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>UNODC</h3>
+                            <p style="color: white;">United Nations Office on Drugs and Crime</p>
+                            <a href="committees/unodc.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offline Committees -->
+        <section class="committee-section">
+            <h2>Offline Committees</h2>
+            <div class="committees-grid">
+                <!-- UNICEF -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/unicef.png" alt="UNICEF Logo">
+                                <i class="fas fa-child" style="display: none;"></i>
+                            </div>
+                            <h3>UNICEF</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>UNICEF</h3>
+                            <p style="color: white;">United Nations International Children's Emergency Fund</p>
+                            <a href="committees/unicef.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UNHRC -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/unhrc.png" alt="UNHRC Logo">
+                                <i class="fas fa-gavel" style="display: none;"></i>
+                            </div>
+                            <h3>UNHRC</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>UNHRC</h3>
+                            <p style="color: white;">United Nations Human Rights Council</p>
+                            <a href="committees/unhrc.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- UNGA-DISEC -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/unga-disec.png" alt="UNGA-DISEC Logo">
+                                <i class="fas fa-globe" style="display: none;"></i>
+                            </div>
+                            <h3>UNGA-DISEC</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>UNGA-DISEC</h3>
+                            <p style="color: white;">United Nations General Assembly - Disarmament and International Security Committee</p>
+                            <a href="committees/unga-disec.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UNCSW -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/uncsw.png" alt="UNCSW Logo">
+                                <i class="fas fa-female" style="display: none;"></i>
+                            </div>
+                            <h3>UNCSW</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>UNCSW</h3>
+                            <p style="color: white;">United Nations Commission on the Status of Women</p>
+                            <a href="committees/uncsw.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- C-34 -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/c34.png" alt="C-34 Logo">
+                                <i class="fas fa-peace" style="display: none;"></i>
+                            </div>
+                            <h3>C-34</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>C-34</h3>
+                            <p style="color: white;">Special Committee on Peacekeeping Operations</p>
+                            <a href="committees/c34.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IMF -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/imf.png" alt="IMF Logo">
+                                <i class="fas fa-coins" style="display: none;"></i>
+                            </div>
+                            <h3>IMF</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>IMF</h3>
+                            <p style="color: white;">International Monetary Fund</p>
+                            <a href="committees/imf.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JCC -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/jcc.png" alt="JCC Logo">
+                                <i class="fas fa-bomb" style="display: none;"></i>
+                            </div>
+                            <h3>JCC</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>JCC</h3>
+                            <p style="color: white;">Joint Crisis Committee – Cuban Missile Crisis (1962)</p>
+                            <a href="committees/jcc.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lok Sabha -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/lok sabha.png" alt="Lok Sabha Logo">
+                                <i class="fas fa-landmark" style="display: none;"></i>
+                            </div>
+                            <h3>Lok Sabha</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>Lok Sabha</h3>
+                            <p style="color: white;">House of the People, Indian Parliament</p>
+                            <a href="committees/lok-sabha.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- International Press -->
+                <div class="committee-card">
+                    <div class="committee-card-inner">
+                        <div class="committee-card-front">
+                            <div class="committee-logo">
+                                <img src="images/Logos/ip.png" alt="IP Logo">
+                                <i class="fas fa-newspaper" style="display: none;"></i>
+                            </div>
+                            <h3>IP</h3>
+                        </div>
+                        <div class="committee-card-back">
+                            <h3>IP</h3>
+                            <p style="color: white;">International Press</p>
+                            <a href="committees/ip.html" class="btn-committee">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<!-- Footer -->
+<footer class="footer">
+      <div class="container">
+          <div class="footer-content" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+              <div class="footer-about" style="flex: 1; min-width: 300px; margin-bottom: 30px;">
+                  <h3>About AMIMUN</h3>
+                  <p>AMIMUN is one of India's most prestigious Model United Nations conferences, bringing together young minds to engage in diplomacy and debate on global issues.</p>
+              </div>
+              <div class="footer-links" style="margin-left: auto; min-width: 200px;">
+                  <h3>Quick Links</h3>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                      <li style="margin-bottom: 10px;"><a href="index.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Home</a></li>
+                      <li style="margin-bottom: 10px;"><a href="why-amimun.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">About Us</a></li>
+                      <li style="margin-bottom: 10px;"><a href="secretariat.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Our Team</a></li>
+                      <li style="margin-bottom: 10px;"><a href="committees.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Committees</a></li>
+                      <li><a href="#contact" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Contact Us</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="footer-bottom">
+              <p style="color: white;">&copy; 2026 AMIMUN. All Rights Reserved. | Designed by AMIMUN Web Operations Team</p>
+          </div>
+      </div>
+  </footer>
+  
+    <script src="js/script.js"></script>
+    <script>
+        // Mobile menu toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
+            });
+        }
+
+        // Animate on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate page elements on load
+            document.body.style.opacity = '0';
+            document.body.style.animation = 'fadeIn 0.8s ease-in-out forwards';
+
+            // Add animation to cards when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.committee-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

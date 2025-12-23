@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Guiding Light - AMIMUN 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #1451a0 0%, #114171 100%), url('images/hero-bg-2.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,31,84,0.1) 0%, rgba(0,31,84,0.2) 100%);
+            animation: gradientBG 8s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            animation: fadeIn 1s ease-out 0.3s both;
+            position: relative;
+        }
+
+        .breadcrumb li {
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .breadcrumb li:not(:last-child)::after {
+            content: '›';
+            position: absolute;
+            right: -15px;
+            color: var(--accent-color);
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-color);
+        }
+
+        .guiding-light-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .section-toggle {
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .section-toggle:nth-child(1) { animation-delay: 0.2s; }
+        .section-toggle:nth-child(2) { animation-delay: 0.4s; }
+        .section-toggle:nth-child(3) { animation-delay: 0.6s; }
+
+        .section-header {
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--primary-color);
+            color: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .section-header:hover::before {
+            left: 100%;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .section-header i {
+            transition: transform 0.3s ease;
+        }
+
+        .section-toggle.active .section-header i {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            padding: 0 30px;
+        }
+
+        .section-toggle.active .section-content {
+            max-height: 2000px;
+            padding: 30px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        .member-image {
+            height: 300px;
+            background: #f5f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,31,84,0.1), rgba(0,31,84,0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .member-card:hover .member-image::after {
+            opacity: 1;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .member-card:hover .member-image img {
+            transform: scale(1.05);
+        }
+
+        .member-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .member-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+
+        .member-designation {
+            color: var(--accent-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .placeholder-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .member-card:hover .placeholder-image {
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Mobile navbar logo and AMIMUN'26 text size */
+            .navbar .logo img {
+                height: 30px !important;
+                width: auto !important;
+            }
+            .navbar .logo span {
+                font-size: 1.1rem !important;
+            }
+            .navbar .logo img {
+                height: 30px !important;
+                width: auto !important;
+            }
+            .navbar .logo span {
+                font-size: 1.1rem !important;
+            }
+            
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-header {
+                padding: 15px 20px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+            
+            .member-image {
+                height: 250px;
+            }
+
+            /* Mobile footer styles */
+            .footer-content {
+                flex-direction: column !important;
+                padding: 20px 15px !important;
+            }
+            .footer-about, .footer-links {
+                min-width: 100% !important;
+                margin: 0 0 25px 0 !important;
+                text-align: center;
+            }
+            .footer-links {
+                margin-left: 0 !important;
+                margin-top: 15px !important;
+            }
+            .footer-bottom p {
+                text-align: center !important;
+                font-size: 0.9rem !important;
+                padding: 0 10px !important;
+                line-height: 1.5 !important;
+            }
+            .footer h3 {
+                margin-bottom: 15px !important;
+                font-size: 1.3rem !important;
+            }
+            .footer p, .footer a {
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+            }
+            .footer-links ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 10px;
+            }
+            .footer-links li {
+                margin: 0 10px 10px 0 !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+      <!-- Navigation -->
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+        <a href="#" class="logo">
+            <img src="images/home/Amity_University_logo.png" alt="Amity University Logo" style="height: 40px; width: auto; margin-right: 10px; vertical-align: middle;">
+            <span style="vertical-align: middle;">AMIMUN'26</span>
+          </a>
+      <div class="nav-toggle" id="navToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item dropdown">
+          <a href="#about" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="why-amimun.html">Why AMIMUN</a></li>
+            <li><a href="beyond-amimun.html">Beyond AMIMUN</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
+            <li><a href="chronicles.html">AMIMUN Chronicles</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#team" class="nav-link">Our Team <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="guiding-light.html">Our Guiding Light</a></li>
+            <li><a href="advisory-board.html">Advisory Board</a></li>
+            <li><a href="secretariat.html">Secretariat</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="committees.html" class="nav-link">Committees</a></li>
+        <li class="nav-item"><a href="matrix.html" class="nav-link">Matrix</a></li>
+        <li class="nav-item"><a href="club.html" class="nav-link">Club</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 style="color: white;">Our Guiding Light</h1>
+            <div style="width: 100px; height: 4px; background-color: #1e88e5; margin: 15px auto 20px;"></div>
+            <p style="color: white; max-width: 800px; margin: 0 auto; font-size: 1.2rem; line-height: 1.6;">
+                The faculty who illuminate our path with wisdom, patience, and unwavering support.
+            </p>
+        </div>
+    </header>
+
+    <!-- Guiding Light Sections -->
+    <div class="guiding-light-container">
+        <!-- Patron-in-Chief Section -->
+        <div class="section-toggle" id="patronInChiefSection">
+            <div class="section-header">
+                <h2>Patron-in-Chief</h2>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="section-content">
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-ashok-k-chauhan.jpg" alt="Dr. Ashok K. Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Ashok K. Chauhan</h3>
+                            <p class="member-designation">
+                                Hon'ble Founder President<br>Amity Education Group
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chief Patron -->
+                 <div class="section-toggle" id="patronsSection">
+            <div class="section-header">
+                <h2>Chief Patron</h2>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="section-content">
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-atul-chauhan.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Atul Chauhan</h3>
+                            <p class="member-designation">
+                                Hon'ble President, RBEF &<br>Chancellor, AUUP
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Patrons Section -->
+        <div class="section-toggle" id="patronsSection">
+            <div class="section-header">
+                <h2>Patrons</h2>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="section-content">
+                <div class="members-grid">
+                    <!--VC Card-->
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-balvinder-shukla.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Prof. (Dr.) Balvinder Shukla</h3>
+                            <p class="member-designation">
+                                Vice Chancellor, AUUP
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!--Amol Chauhan Card-->
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/mr-amol-chauhan.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Mr. Amol Chauhan</h3>
+                            <p class="member-designation">
+                               Executive Director, Strategy <br>AUUP
+                            </p>
+                        </div>
+                    </div>
+
+                     <!--Abhay Chauhan Card-->
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/mr-abhay-chauhan.jpeg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Mr. Abhay K  Chauhan</h3>
+                            <p class="member-designation">
+                                Senior Vice President, RBEF <br> AUUP
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Co-Patron Section -->
+        <div class="section-toggle" id="coPatronSection">
+            <div class="section-header">
+                <h2>Co-Patron</h2>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="section-content">
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-sanjeev-bansal.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Sanjeev Bansal</h3>
+                            <p class="member-designation">
+                                Addl. Pro Vice-Chancellor,<br>Dean FMS & Director ABS
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advisory Committee Section -->
+        <div class="section-toggle" id="advisoryCommitteeSection">
+            <div class="section-header">
+                <h2>Advisory Committee</h2>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="section-content">
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-alpana-kakkar.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Alpana Kakkar</h3>
+                            <p class="member-designation">
+                                Dean Student Support &<br>Academic Affairs
+                            </p>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-h-p-singh.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. H.P. Singh</h3>
+                            <p class="member-designation">
+                                Dean Student Welfare
+                            </p>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-anil-sehrawat.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Anil Sehrawat</h3>
+                            <p class="member-designation">
+                                Deputy Director,<br>Amity Institute of Corporate Communication
+                            </p>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-nitasha-hasteer.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Nitasha Hasteer</h3>
+                            <p class="member-designation">
+                                Dy. Director – Academics & Head,<br>Department of Information Technology, ASET
+                            </p>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-jai-saini.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Mr. Jai Saini</h3>
+                            <p class="member-designation">
+                                Director,<br>Students' Welfare and Support
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Organizing Committee Section -->
+        <div class="section-toggle" id="organizingCommitteeSection">
+            <div class="section-header">
+                <h2>Organizing Committee</h2>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="section-content">
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-laxmi-ahuja2.jpeg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Laxmi Ahuja</h3>
+                            <p class="member-designation">
+                                Dy. Dean Students' Welfare, AUUP<br>
+                                <strong>Chairperson</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Co-Chairperson -->
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/sumitra.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Sumitra Singh</h3>
+                            <p class="member-designation">
+                                Associate Professor, ALSN<br>
+                                <strong>Co-Chairperson</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Other Members -->
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-priyanka-singh.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Priyanka Singh</h3>
+                            <p class="member-designation">
+                                Associate Professor, ASET, CE
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-saloni-pahuja.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Saloni Pahuja</h3>
+                            <p class="member-designation">
+                                Associate Professor, ASB
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/rajmala.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Rajbala Simon</h3>
+                            <p class="member-designation">
+                                Associate Professor, AIIT
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/dr-shubhra-dixit.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Shubhra Dixit</h3>
+                            <p class="member-designation">
+                                Assistant Professor,<br>Department of ECE
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/ruchi-tandon.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Ruchi Tandon</h3>
+                            <p class="member-designation">
+                                Assistant Professor, AICC
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/neha.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Neha Jain</h3>
+                            <p class="member-designation">
+                                Assistant Professor, AIP
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/srinjoyee-dutta.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Srinjoyee Dutta</h3>
+                            <p class="member-designation">
+                                Assistant Professor, AIESR
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/ankhi-mukherjee.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Ankhi Mukherjee</h3>
+                            <p class="member-designation">
+                                Assistant Professor, ASCO
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="images/guiding-light/devashosj.jpg" alt="Dr. Atul Chauhan" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Debashish Das</h3>
+                            <p class="member-designation">
+                                Assistant Professor, AIIS
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+<footer class="footer">
+      <div class="container">
+          <div class="footer-content" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+              <div class="footer-about" style="flex: 1; min-width: 300px; margin-bottom: 30px;">
+                  <h3>About AMIMUN</h3>
+                  <p>AMIMUN is one of India's most prestigious Model United Nations conferences, bringing together young minds to engage in diplomacy and debate on global issues.</p>
+              </div>
+              <div class="footer-links" style="margin-left: auto; min-width: 200px;">
+                  <h3>Quick Links</h3>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                      <li style="margin-bottom: 10px;"><a href="index.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Home</a></li>
+                      <li style="margin-bottom: 10px;"><a href="why-amimun.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">About Us</a></li>
+                      <li style="margin-bottom: 10px;"><a href="secretariat.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Our Team</a></li>
+                      <li style="margin-bottom: 10px;"><a href="committees.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Committees</a></li>
+                      <li><a href="#contact" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Contact Us</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="footer-bottom">
+              <p style="color: white;">&copy; 2026 AMIMUN. All Rights Reserved. | Designed by AMIMUN Web Operations Team</p>
+          </div>
+      </div>
+  </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Handle image loading errors
+        function handleImageError(img) {
+            // Replace broken image with a placeholder
+            img.onerror = null;
+            img.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D"400"%20height%3D"400"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%3E%3Crect%20width%3D"400"%20height%3D"400"%20fill%3D"%23f0f0f0"%2F%3E%3Ctext%20x%3D"50%25"%20y%3D"50%25"%20font-family%3D"Arial%2C%20sans-serif"%20font-size%3D"16"%20text-anchor%3D"middle"%20dy%3D".3em"%20fill%3D"%23999"%3EImage%20not%20available%3C%2Ftext%3E%3C%2Fsvg%3E';
+            img.alt = 'Image not available';
+        }
+
+        // Initialize all images with error handling
+        function initImages() {
+            const images = document.querySelectorAll('.member-photo');
+            images.forEach(img => {
+                // Set up error handling
+                img.onerror = () => handleImageError(img);
+                
+                // Force reload the image in case it's in cache but not displaying
+                const src = img.src;
+                img.src = '';
+                setTimeout(() => { img.src = src; }, 10);
+            });
+        }
+
+        // Toggle sections with enhanced animations
+        function setupSectionToggles() {
+            document.querySelectorAll('.section-header').forEach((header, index) => {
+                header.addEventListener('click', () => {
+                    const parent = header.parentElement;
+                    const isActive = parent.classList.contains('active');
+                    
+                    // Close all other sections
+                    document.querySelectorAll('.section-toggle').forEach(section => {
+                        if (section !== parent) {
+                            section.classList.remove('active');
+                            const content = section.querySelector('.section-content');
+                            if (content) {
+                                content.style.maxHeight = '0';
+                                content.style.padding = '0 30px';
+                            }
+                        }
+                    });
+                    
+                    // Toggle current section
+                    if (!isActive) {
+                        parent.classList.add('active');
+                        const content = parent.querySelector('.section-content');
+                        if (content) {
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            content.style.padding = '30px';
+                            
+                            // Animate cards when section is opened with staggered delay
+                            const cards = content.querySelectorAll('.member-card');
+                            cards.forEach((card, i) => {
+                                card.style.animation = 'none';
+                                card.offsetHeight; // Trigger reflow
+                                card.style.animation = `fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards ${i * 0.1}s`;
+                            });
+                        }
+                    } else {
+                        parent.classList.remove('active');
+                        const content = parent.querySelector('.section-content');
+                        if (content) {
+                            content.style.maxHeight = '0';
+                            content.style.padding = '0 30px';
+                        }
+                    }
+                });
+            });
+        }
+
+        // Open first section by default with animation
+        function initFirstSection() {
+            const firstSection = document.querySelector('.section-toggle');
+            if (firstSection) {
+                setTimeout(() => {
+                    firstSection.classList.add('active');
+                    const content = firstSection.querySelector('.section-content');
+                    if (content) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.padding = '30px';
+                        
+                        // Animate cards in first section with staggered delay
+                        const cards = content.querySelectorAll('.member-card');
+                        cards.forEach((card, i) => {
+                            card.style.animation = `fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards ${i * 0.1 + 0.3}s`;
+                        });
+                    }
+                }, 300);
+            }
+        }
+
+        // Add scroll reveal animation
+        function setupScrollAnimations() {
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.section-toggle, .member-card');
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+
+            // Initial check
+            animateOnScroll();
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate page elements on load
+            document.body.style.opacity = '0';
+            document.body.style.animation = 'fadeIn 0.8s ease-in-out forwards';
+            
+            // Initialize all components
+            initImages();
+            setupSectionToggles();
+            initFirstSection();
+            setupScrollAnimations();
+            
+            // Force a reflow to ensure animations trigger
+            document.body.offsetHeight;
+        });
+    </script>
+</body>
+</html>

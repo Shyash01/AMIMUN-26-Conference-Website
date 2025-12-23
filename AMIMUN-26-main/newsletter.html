@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>AMIMUN Publications | Newsletter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary-color: #001F54;
+      --secondary-color: #034078;
+      --accent-color: #1282A2;
+      --light-color: #F8F9FA;
+      --white: #FFFFFF;
+      --gold: #D4AF37;
+      --radius: 8px;
+      --shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+      --text-light: #6C757D;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-color);
+      color: var(--primary-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .newsletter-hero {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 120px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 60px;
+    }
+
+    .newsletter-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSJ0cmFuc3BhcmVudCI+PC9yZWN0PjxyZWN0IHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSI+PC9yZWN0PjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSI+PC9yZWN0Pjwvc3ZnPg==');
+      opacity: 0.2;
+    }
+
+    .newsletter-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .newsletter-hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-divider {
+      width: 100px;
+      height: 4px;
+      background: var(--gold);
+      margin: 0 auto 30px;
+      border: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Publications Section */
+    .publications {
+      padding: 0 20px 60px;
+      background-color: var(--white);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 80px;
+      padding: 0 20px;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--accent-color);
+    }
+
+    .section-title p {
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .pub-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .pub-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .pub-preview-container {
+      width: 55%;
+      height: 500px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #f5f7fa;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .pub-preview {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .pub-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent-color);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+    }
+
+    .pub-info-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px;
+      position: relative;
+      width: 45%;
+      flex: 1;
+    }
+
+    .pub-title {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .pub-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+    }
+
+    .pub-desc {
+      color: var(--text-light);
+      margin: 25px 0;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .pub-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 30px 0;
+    }
+
+    .meta-item {
+      background: var(--light-color);
+      padding: 8px 15px;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--primary-color);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 25px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--primary-color);
+      color: white;
+      padding: 60px 0 30px;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-color);
+    }
+
+    .footer p {
+      margin: 10px 0;
+      opacity: 0.8;
+      font-size: 0.95rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .pub-preview-container {
+        height: 450px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .pub-item {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .pub-preview-container,
+      .pub-info-card {
+        width: 100%;
+      }
+
+      .pub-preview-container {
+        height: 500px;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      /* Mobile navbar logo and AMIMUN'26 text size */
+      .navbar .logo img {
+        height: 30px !important;
+        width: auto !important;
+      }
+
+      .navbar .logo span {
+        font-size: 1.1rem !important;
+      }
+
+      .newsletter-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .pub-preview-container {
+        height: 400px;
+      }
+
+      .pub-info-card {
+        padding: 30px;
+      }
+
+      .pub-title {
+        font-size: 1.6rem;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      /* Mobile footer styles */
+      .footer-content {
+        flex-direction: column !important;
+        padding: 20px 15px !important;
+      }
+
+      .footer-about,
+      .footer-links {
+        min-width: 100% !important;
+        margin: 0 0 25px 0 !important;
+        text-align: center;
+      }
+
+      .footer-links {
+        margin-left: 0 !important;
+        margin-top: 15px !important;
+      }
+
+      .footer-bottom p {
+        text-align: center !important;
+        font-size: 0.9rem !important;
+        padding: 0 10px !important;
+        line-height: 1.5 !important;
+      }
+
+      .footer h3 {
+        margin-bottom: 15px !important;
+        font-size: 1.3rem !important;
+      }
+
+      .footer p,
+      .footer a {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+      }
+
+      .footer-links ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .footer-links li {
+        margin: 0 10px 10px 0 !important;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .newsletter-hero h1 {
+        font-size: 2rem;
+      }
+
+      .newsletter-hero {
+        padding: 80px 20px 60px;
+        margin-bottom: 30px;
+      }
+
+      .pub-preview-container {
+        height: 300px;
+      }
+
+      .pub-info-card {
+        padding: 25px;
+      }
+
+      .pub-title {
+        font-size: 1.4rem;
+      }
+
+      .pub-desc {
+        font-size: 1rem;
+        margin: 20px 0;
+      }
+
+      .pub-meta {
+        gap: 10px;
+        margin: 25px 0;
+      }
+
+      .meta-item {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+      }
+
+      .footer {
+        padding: 40px 0 20px;
+        margin-top: 60px;
+      }
+
+      .footer-links {
+        gap: 15px;
+      }
+    }
+
+    /* IMPORTANT: do NOT change layout */
+
+/*    .pdf-wrapper {
+  position: relative;
+}*/
+
+/* Leave iframe styling untouched */
+/*.pdf-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Small corner mask ONLY */
+/*.pdf-mask-corner {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 6px;
+  z-index: 10;
+  pointer-events: auto;
+}*/
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="images/home/Amity_University_logo.png" alt="Amity University Logo"
+          style="height: 40px; width: auto; margin-right: 10px; vertical-align: middle;">
+        <span style="vertical-align: middle;">AMIMUN'26</span>
+      </a>
+      <div class="nav-toggle" id="navToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item dropdown">
+          <a href="#about" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="why-amimun.html">Why AMIMUN</a></li>
+            <li><a href="beyond-amimun.html">Beyond AMIMUN</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
+            <li><a href="chronicles.html">AMIMUN Chronicles</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#team" class="nav-link">Our Team <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="guiding-light.html">Our Guiding Light</a></li>
+            <li><a href="advisory-board.html">Advisory Board</a></li>
+            <li><a href="secretariat.html">Secretariat</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="committees.html" class="nav-link">Committees</a></li>
+        <li class="nav-item"><a href="matrix.html" class="nav-link">Matrix</a></li>
+        <li class="nav-item"><a href="club.html" class="nav-link">Club</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="newsletter-hero">
+    <h1 style="color: white;">AMIMUN Publications</h1>
+    <div class="hero-divider"></div>
+    <p style="color: white;">Explore our official publications and stay updated with the latest from AMIMUN 2025</p>
+  </section>
+
+  <!-- Publications Section -->
+  <section class="publications">
+    <h2>Our Publications</h2>
+
+
+    <div class="pub-grid">
+      <!-- Souvenir 2025 -->
+      <div class="pub-item">
+        <div class="pub-preview-container">
+          <iframe class="pub-preview" src="https://drive.google.com/file/d/1YZt7JOsI4eiJtJ5jv5cGYRjgEDWYzK68/preview"
+            allow="autoplay" title="Souvenir 2025 Preview"></iframe>
+        </div>
+
+        <div class="pub-info-card">
+          <h3 class="pub-title">Souvenir 2025</h3>
+          <p class="pub-desc">A collection of memories, highlights, and creative contributions from AMIMUN 2025. This
+            38-page magazine captures the essence of our conference with stunning visuals and engaging content.</p>
+
+          <div class="pub-meta">
+            <span class="meta-item">
+              <i class="far fa-file-pdf"></i> PDF Document
+            </span>
+            <span class="meta-item">
+              <i class="far fa-file-alt"></i> 56 Pages
+            </span>
+            <span class="meta-item">
+              <i class="far fa-calendar-alt"></i> 2025 Edition
+            </span>
+          </div>
+
+          <div class="btn-group">
+            <a href="https://drive.google.com/file/d/1YZt7JOsI4eiJtJ5jv5cGYRjgEDWYzK68/view" target="_blank"
+              class="btn">
+              <i class="fas fa-eye"></i> View Full PDF
+            </a>
+            <a href="https://drive.google.com/uc?export=download&id=1YZt7JOsI4eiJtJ5jv5cGYRjgEDWYzK68"
+              class="btn btn-outline" download>
+              <i class="fas fa-download"></i> Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pre-Conference Newsletter 2025 -->
+      <div class="pub-item">
+        <div class="pub-preview-container">
+          <iframe class="pub-preview" src="https://drive.google.com/file/d/1znEbIp3jiXlflVnUTbSuuNZBh7GoPN6j/preview"
+            allow="autoplay" title="Pre-Conference Newsletter 2025 Preview"></iframe>
+        </div>
+
+        <div class="pub-info-card">
+          <h3 class="pub-title">Pre-Conference Newsletter 2025</h3>
+          <p class="pub-desc">Your comprehensive guide to AMIMUN 2025, featuring detailed schedules, committee
+            information, and essential details for all participants to make the most of their MUN experience.</p>
+
+          <div class="pub-meta">
+            <span class="meta-item">
+              <i class="far fa-file-pdf"></i> PDF Document
+            </span>
+            <span class="meta-item">
+              <i class="far fa-file-alt"></i> 38 Pages
+            </span>
+            <span class="meta-item">
+              <i class="far fa-calendar-alt"></i> 2025 Edition
+            </span>
+          </div>
+
+          <div class="btn-group">
+            <a href="https://drive.google.com/file/d/1znEbIp3jiXlflVnUTbSuuNZBh7GoPN6j/view" target="_blank"
+              class="btn">
+              <i class="fas fa-eye"></i> View Full PDF
+            </a>
+            <a href="https://drive.google.com/uc?export=download&id=1znEbIp3jiXlflVnUTbSuuNZBh7GoPN6j"
+              class="btn btn-outline" download>
+              <i class="fas fa-download"></i> Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Unified Voice Newsletter 2025 -->
+      <div class="pub-item">
+        <div class="pub-preview-container pdf-wrapper">
+  <iframe
+    class="pub-preview pdf-frame"
+    src="https://drive.google.com/file/d/1hzFmYNpgF1nonnB2j-_AFCsT_LjimOBd/preview"
+    allow="autoplay">
+  </iframe>
+
+  <div class="pdf-mask-corner"></div>
+</div>
+
+
+        <div class="pub-info-card">
+          <h3 class="pub-title">Inaugural Edition of The UNified Voice: The AMIMUN Newsletter</h3>
+          <p class="pub-desc">
+            Presenting Cirque du Sentiment, where emotions command the stage and words move in harmony with thought.
+            Explore the inaugural edition of The UNified Voice newsletter, where passion and purpose come together
+            through creative expressions that weave a tapestry of emotion, intellect, and imagination.
+          </p>
+
+          <div class="pub-meta">
+            <span class="meta-item">
+              <i class="far fa-file-pdf"></i> PDF Document
+            </span>
+            <span class="meta-item">
+              <i class="far fa-file-alt"></i> 35 Pages
+            </span>
+            <span class="meta-item">
+              <i class="far fa-calendar-alt"></i> 2025 Edition
+            </span>
+          </div>
+          <!--
+          <div class="btn-group">
+            <a href="https://theunifiedvoice.pages.dev/" target="_blank" class="btn">
+              <i class="fas fa-external-link-alt"></i> The Unified Voice Newsletter
+            </a>
+            -->
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content"
+        style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+        <div class="footer-about" style="flex: 1; min-width: 300px; margin-bottom: 30px;">
+          <h3>About AMIMUN</h3>
+          <p>AMIMUN is one of India's most prestigious Model United Nations conferences, bringing together young minds
+            to engage in diplomacy and debate on global issues.</p>
+        </div>
+        <div class="footer-links" style="margin-left: auto; min-width: 200px;">
+          <h3>Quick Links</h3>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 10px;"><a href="index.html"
+                style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Home</a></li>
+            <li style="margin-bottom: 10px;"><a href="why-amimun.html"
+                style="color: #fff; text-decoration: none; transition: color 0.3s ease;">About Us</a></li>
+            <li style="margin-bottom: 10px;"><a href="secretariat.html"
+                style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Our Team</a></li>
+            <li style="margin-bottom: 10px;"><a href="committees.html"
+                style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Committees</a></li>
+            <li><a href="#contact" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Contact
+                Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p style="color: white;">&copy; 2026 AMIMUN. All Rights Reserved. | Designed by AMIMUN Web Operations Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>

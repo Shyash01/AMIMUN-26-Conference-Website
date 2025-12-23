@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why AMIMUN - AMIMUN 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #1451a0 0%, #114171 100%), url('images/hero-bg.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        .breadcrumb li {
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .breadcrumb li:not(:last-child)::after {
+            content: '›';
+            position: absolute;
+            right: -15px;
+            color: var(--accent-color);
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-color);
+        }
+
+        .content-section {
+            padding: 80px 0;
+        }
+
+        .about-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .about-card.visible {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .about-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .testimonial {
+            background: rgba(18, 130, 162, 0.05);
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"\201C"';
+            font-size: 4rem;
+            color: var(--accent-color);
+            position: absolute;
+            left: 10px;
+            top: -10px;
+            line-height: 1;
+            opacity: 0.2;
+        }
+
+        .testimonial-author {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 15px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .value-item.visible {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-item i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .value-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Mobile navbar logo and AMIMUN'26 text size */
+            .navbar .logo img {
+                height: 30px !important;
+                width: auto !important;
+            }
+            .navbar .logo span {
+                font-size: 1.1rem !important;
+            }
+            .navbar .logo img {
+                height: 30px !important;
+                width: auto !important;
+            }
+            .navbar .logo span {
+                font-size: 1.1rem !important;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-card {
+                padding: 25px;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Mobile footer styles */
+            .footer-content {
+                flex-direction: column !important;
+                padding: 20px 15px !important;
+            }
+            .footer-about, .footer-links {
+                min-width: 100% !important;
+                margin: 0 0 25px 0 !important;
+                text-align: center;
+            }
+            .footer-links {
+                margin-left: 0 !important;
+                margin-top: 15px !important;
+            }
+            .footer-bottom p {
+                text-align: center !important;
+                font-size: 0.9rem !important;
+                padding: 0 10px !important;
+                line-height: 1.5 !important;
+            }
+            .footer h3 {
+                margin-bottom: 15px !important;
+                font-size: 1.3rem !important;
+            }
+            .footer p, .footer a {
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+            }
+            .footer-links ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 10px;
+            }
+            .footer-links li {
+                margin: 0 10px 10px 0 !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+        <a href="#" class="logo">
+            <img src="images/home/Amity_University_logo.png" alt="Amity University Logo" style="height: 40px; width: auto; margin-right: 10px; vertical-align: middle;">
+            <span style="vertical-align: middle;">AMIMUN'26</span>
+          </a>
+      <div class="nav-toggle" id="navToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item dropdown">
+          <a href="#about" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="why-amimun.html">Why AMIMUN</a></li>
+            <li><a href="beyond-amimun.html">Beyond AMIMUN</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
+            <li><a href="chronicles.html">AMIMUN Chronicles</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#team" class="nav-link">Our Team <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="guiding-light.html">Our Guiding Light</a></li>
+            <li><a href="advisory-board.html">Advisory Board</a></li>
+            <li><a href="secretariat.html">Secretariat</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="committees.html" class="nav-link">Committees</a></li>
+        <li class="nav-item"><a href="matrix.html" class="nav-link">Matrix</a></li>
+        <li class="nav-item"><a href="club.html" class="nav-link">Club</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 style="color: white;">Why AMIMUN</h1>
+            <div style="width: 100px; height: 4px; background-color: #1e88e5; margin: 15px auto 20px;"></div>
+            <p style="color: white; max-width: 800px; margin: 0 auto; font-size: 1.2rem; line-height: 1.6;">
+                Discover what makes AMIMUN a premier platform for aspiring diplomats and global leaders
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="about-card" id="about-intro">
+                <h2>About AMIMUN</h2>
+                <p>The Amity International Model United Nations (AMIMUN) Conference serves as a distinguished platform where diplomacy meets intellectual rigor. Through dynamic committees, AMIMUN fosters an environment that enhances critical thinking, public speaking, and leadership skills, empowering participants to address pressing global issues collaboratively. Building on the legacy of its thirteen successful editions, AMIMUN has established itself as a beacon in the Model UN circuit, attracting participants from around the world.</p>
+                
+                <div class="testimonial">
+                    <p>AMIMUN is not just a conference; it is a crucible where future leaders are shaped, equipped to navigate the complexities of an interconnected world.</p>
+                    <div class="testimonial-author">– Delegate, AMIMUN 2026</div>
+                </div>
+            </div>
+
+            <div class="about-card" id="commitment">
+                <h2>Absolute Commitment</h2>
+                <p>The Secretariat of the Amity International Model United Nations Conference is a dedicated team of people who have continuously exhibited their diligence and knowledge. Each individual is precisely chosen to ensure that the principles of AMIMUN are upheld and implemented with the utmost dedication. The secretariat maintains the highest hospitality standard while ensuring every committee's efficient operation. Thereby, we continue to be dedicated to the promise of excellence and assure a fulfilling experience.</p>
+            </div>
+
+            <div class="about-card" id="international">
+                <h2>International Platform</h2>
+                <p>Amity University is proud to be an institute where individuals from diverse backgrounds interact and work together. AMIMUN, abiding by the same objective, has established an international platform for incorporating ideas, opinions, and perspectives. The participation of international delegates and previous collaborations with organizations such as the United Nations Information Center for India and Bhutan, Amnesty International, and Doctors Without Borders contribute to efficiently imparting knowledge of global affairs, diplomacy, and international policy to students while also bringing authenticity to the experience.</p>
+            </div>
+
+            <div class="about-card" id="creativity">
+                <h2>Creativity & Innovation</h2>
+                <p>Amity University works to boost creativity among students. We are advocates of students' overall growth through participation in various disciplines and activities.</p>
+            </div>
+
+            <div class="about-card" id="ingenuity">
+                <h2>Brush Up Ingenuity</h2>
+                <p>AMIMUN has been successful in providing delegates with a platform where they can hone and refine their strategic abilities. The AMIMUN will encourage this manner of thinking to create solutions for some grave world issues.</p>
+            </div>
+
+            <div class="about-card" id="motions">
+                <h2>Engaging & Paramount Motions</h2>
+                <p>The AMIMUN fraternity offers the most intriguing motions to encourage the highest quality of debate. Deliberation on challenging global issues will sharpen the members with the learnings of the United Nations and assist them with understanding the current world request.</p>
+            </div>
+
+            <div class="about-card" id="university">
+                <h2>About Amity University</h2>
+                <p><strong>Our Vision:</strong> To strengthen society as a whole by delivering communal, collaborative instruction, leading the world in skill development, and living up to our commitment to being the institution where modernity and tradition coexist. Our mission is to provide education, address all learning levels in the constantly changing field of contemporary events, expand the frontiers of learning and research, and examine and enhance students' overall character. We not only create great experts but well-rounded individuals. Our students understand and respect human qualities, have pride in their heritage and culture, discern what is right, and imbibe attributes of courage, conviction, and action.</p>
+            </div>
+
+            <h2 class="text-center" style="margin: 60px 0 40px;">Our Core Values</h2>
+            
+            <div class="values-grid">
+                <div class="value-item" id="value1">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Academic Excellence</h3>
+                    <p>Amity University aspires to the highest quality and excellence in teaching, learning, research, and scholarship across all disciplines.</p>
+                </div>
+                
+                <div class="value-item" id="value2">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Integrity & Ethics</h3>
+                    <p>Amity University is committed to academic liberty, transparency, and accountability, as well as the highest ethical values, transparency, and professionalism.</p>
+                </div>
+                
+                <div class="value-item" id="value3">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Diversity & Mutual Respect</h3>
+                    <p>Amity University fosters a culture of safety, trust, and mutual respect and incorporates equality and diversity into its strategy by ensuring that strategic plans are fair and inclusive.</p>
+                </div>
+                
+                <div class="value-item" id="value4">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Expanding Horizons of Knowledge</h3>
+                    <p>Amity University is inspired by research and innovation and offers broad participation in scholarly activities when pursuing change, creativity, and quality.</p>
+                </div>
+                
+                <div class="value-item" id="value5">
+                    <i class="fas fa-users"></i>
+                    <h3>Shared Governance</h3>
+                    <p>Amity University promotes shared decision-making through a process based on collaborative consultation, open information flow, diversified participation, and collective deliberation of all stakeholders.</p>
+                </div>
+                
+                <div class="value-item" id="value6">
+                    <i class="fas fa-globe-asia"></i>
+                    <h3>Social Responsibility</h3>
+                    <p>Amity University promotes and maintains an inclusive atmosphere in which everyone can achieve their full potential and contribute to the betterment of society.</p>
+                </div>
+                
+                <div class="value-item" id="value7">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Environmental Responsibility</h3>
+                    <p>Amity University is entirely aware of its environmental responsibilities and strives for the principle of sustainable development to ensure any adverse environmental impact of its activities.</p>
+                </div>
+                
+                <div class="value-item" id="value8">
+                    <i class="fas fa-hands"></i>
+                    <h3>Service</h3>
+                    <p>Amity University strives to address its constituents' diverse personal and professional development needs while also encouraging the habit of involvement, caring, and civic responsibility by emphasizing the connection among service, excellence, and professional growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+<footer class="footer">
+      <div class="container">
+          <div class="footer-content" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+              <div class="footer-about" style="flex: 1; min-width: 300px; margin-bottom: 30px;">
+                  <h3>About AMIMUN</h3>
+                  <p>AMIMUN is one of India's most prestigious Model United Nations conferences, bringing together young minds to engage in diplomacy and debate on global issues.</p>
+              </div>
+              <div class="footer-links" style="margin-left: auto; min-width: 200px;">
+                  <h3>Quick Links</h3>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                      <li style="margin-bottom: 10px;"><a href="index.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Home</a></li>
+                      <li style="margin-bottom: 10px;"><a href="why-amimun.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">About Us</a></li>
+                      <li style="margin-bottom: 10px;"><a href="secretariat.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Our Team</a></li>
+                      <li style="margin-bottom: 10px;"><a href="committees.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Committees</a></li>
+                      <li><a href="#contact" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Contact Us</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="footer-bottom">
+              <p style="color: white;">&copy; 2026 AMIMUN. All Rights Reserved. | Designed by AMIMUN Web Operations Team</p>
+          </div>
+      </div>
+  </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.about-card, .value-item');
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+
+            // Initial check
+            animateOnScroll();
+
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

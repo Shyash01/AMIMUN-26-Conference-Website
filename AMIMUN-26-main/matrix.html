@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix - AMIMUN 2026</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- SheetJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        /* Matrix Page Specific Styles */
+        .matrix-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .matrix-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .matrix-header h1 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+        }
+
+        .matrix-table-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .matrix-table-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            max-height: 70vh;
+            border-radius: 10px;
+        }
+
+        #matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        #matrix-table th,
+        #matrix-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.2s ease;
+        }
+
+        #matrix-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        #matrix-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        #matrix-table tr:hover {
+            background-color: #f0f7ff;
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 31, 84, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 15px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #003366;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            /* Mobile navbar logo and AMIMUN'26 text size */
+            .navbar .logo img {
+                height: 30px !important;
+                width: auto !important;
+            }
+            .navbar .logo span {
+                font-size: 1.1rem !important;
+            }
+            .navbar .logo img {
+                height: 30px !important;
+                width: auto !important;
+            }
+            .navbar .logo span {
+                font-size: 1.1rem !important;
+            }
+            
+            .matrix-container {
+                padding: 20px 10px;
+            }
+            
+            #matrix-table th,
+            #matrix-table td {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+
+            /* Carousel styles for sheet tabs */
+            #matrix-actions {
+                padding: 8px 0 !important;
+                position: relative;
+            }
+
+            #sheet-tabs {
+                display: flex;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none; /* IE and Edge */
+                padding: 10px 5px;
+                gap: 8px;
+            }
+
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            #sheet-tabs::-webkit-scrollbar {
+                display: none;
+            }
+
+            #sheet-tabs button {
+                font-size: 0.85rem !important;
+                padding: 8px 18px !important;
+                margin: 0 2px !important;
+                white-space: nowrap;
+                flex: 0 0 auto;
+                border-radius: 20px !important;
+                scroll-snap-align: start;
+                transition: all 0.3s ease;
+                background: #f5f7fa;
+                border: 1px solid #e0e6ed;
+                color: #2d3748;
+            }
+
+            #sheet-tabs button.active {
+                background: var(--primary-color) !important;
+                color: white !important;
+                border-color: var(--primary-color) !important;
+                box-shadow: 0 2px 8px rgba(0, 31, 84, 0.2);
+            }
+
+            /* Carousel navigation arrows */
+            #matrix-actions .carousel-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: white;
+                border: 1px solid #e2e8f0;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                z-index: 10;
+                transition: all 0.2s ease;
+            }
+
+            #matrix-actions .carousel-arrow:hover {
+                background: #f8fafc;
+                transform: translateY(-50%) scale(1.05);
+            }
+
+            #matrix-actions .carousel-arrow.prev {
+                left: 15px;
+            }
+
+            #matrix-actions .carousel-arrow.next {
+                right: 15px;
+            }
+
+            #matrix-search,
+            #download-excel {
+                width: 100% !important;
+                margin: 5px 0 !important;
+            }
+
+            /* Mobile footer styles */
+            .footer-content {
+                flex-direction: column !important;
+                padding: 20px 15px !important;
+            }
+            .footer-about, .footer-links {
+                min-width: 100% !important;
+                margin: 0 0 25px 0 !important;
+                text-align: center;
+            }
+            .footer-links {
+                margin-left: 0 !important;
+                margin-top: 15px !important;
+            }
+            .footer-bottom p {
+                text-align: center !important;
+                font-size: 0.9rem !important;
+                padding: 0 10px !important;
+                line-height: 1.5 !important;
+            }
+            .footer h3 {
+                margin-bottom: 15px !important;
+                font-size: 1.3rem !important;
+            }
+            .footer p, .footer a {
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+            }
+            .footer-links ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 10px;
+            }
+            .footer-links li {
+                margin: 0 10px 10px 0 !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+        <a href="#" class="logo">
+            <img src="images/home/Amity_University_logo.png" alt="Amity University Logo" style="height: 40px; width: auto; margin-right: 10px; vertical-align: middle;">
+            <span style="vertical-align: middle;">AMIMUN'26</span>
+          </a>
+      <div class="nav-toggle" id="navToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item dropdown">
+          <a href="#about" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="why-amimun.html">Why AMIMUN</a></li>
+            <li><a href="beyond-amimun.html">Beyond AMIMUN</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
+            <li><a href="chronicles.html">AMIMUN Chronicles</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#team" class="nav-link">Our Team <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="guiding-light.html">Our Guiding Light</a></li>
+            <li><a href="advisory-board.html">Advisory Board</a></li>
+            <li><a href="secretariat.html">Secretariat</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="committees.html" class="nav-link">Committees</a></li>
+        <li class="nav-item"><a href="matrix.html" class="nav-link">Matrix</a></li>
+        <li class="nav-item"><a href="club.html" class="nav-link">Club</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <!-- Page Header -->
+    <header class="page-header" style="position: relative; overflow: hidden;">
+        <div class="header-bg" style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1451a0 0%, #114171 100%);
+            z-index: 1;
+        "></div>
+        
+        <!-- Animated background elements -->
+        <div class="header-particles" style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.8) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.8) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: float 15s ease-in-out infinite;
+        "></div>
+        
+        <div class="container" style="
+            position: relative;
+            z-index: 3;
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        ">
+            <div style="
+                max-width: 800px;
+                margin: 0 auto;
+                transform: translateY(20px);
+                opacity: 0;
+                animation: fadeInUp 0.8s ease-out 0.3s forwards;
+            ">
+                <h1 style="
+                    font-size: 3.5rem;
+                    font-weight: 700;
+                    margin-bottom: 15px;
+                    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                    letter-spacing: -0.5px;
+                    line-height: 1.2;
+                    color: white;
+                ">Delegation Matrix</h1>
+                
+                <div style="
+                    height: 4px;
+                    width: 80px;
+                    background: var(--accent-color, #4fc3f7);
+                    margin: 0 auto 20px;
+                    border-radius: 2px;
+                    transform: scaleX(0);
+                    transform-origin: center;
+                    animation: scaleIn 0.8s ease-out 0.6s forwards;
+                "></div>
+                
+                <p style="
+                    font-size: 1.25rem;
+                    max-width: 700px;
+                    margin: 0 auto 30px;
+                    opacity: 0.9;
+                    line-height: 1.6;
+                    transform: translateY(10px);
+                    animation: fadeInUp 0.8s ease-out 0.5s forwards;
+                    color: rgb(236, 234, 234);
+                ">Browse through the complete list of countries and their respective committee assignments</p>
+                
+                <div class="header-buttons" style="
+                    display: flex;
+                    gap: 15px;
+                    justify-content: center;
+                    margin-top: 30px;
+                    opacity: 0;
+                    transform: translateY(20px);
+                    animation: fadeInUp 0.8s ease-out 0.7s forwards;
+                ">
+                    <a href="#matrix-table" class="btn btn-primary" style="
+                        padding: 12px 28px;
+                        font-weight: 600;
+                        border-radius: 50px;
+                        box-shadow: 0 4px 15px rgba(0, 31, 84, 0.3);
+                        transition: all 0.3s ease;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                        font-size: 0.9rem;
+                        background: var(--accent-color, #4fc3f7);
+                        border: 2px solid var(--accent-color, #4fc3f7);
+                    ">View Matrix</a>
+                    <a href="#" id="download-csv" class="btn btn-outline" style="
+                        padding: 12px 28px;
+                        font-weight: 600;
+                        border-radius: 50px;
+                        transition: all 0.3s ease;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                        font-size: 0.9rem;
+                        background: transparent;
+                        border: 2px solid white;
+                        color: white;
+                    ">
+                        <i class="fas fa-download" style="margin-right: 8px;"></i> Download Matrix
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+        
+        <style>
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes scaleIn {
+                from { transform: scaleX(0); }
+                to { transform: scaleX(1); }
+            }
+            
+            @keyframes fadeIn {
+                to { opacity: 1; }
+            }
+            
+            @keyframes scrollIndicator {
+                0%, 100% { 
+                    transform: translate(-50%, 0);
+                    opacity: 0;
+                }
+                50% { 
+                    transform: translate(-50%, 10px);
+                    opacity: 1;
+                }
+            }
+            
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(0, 31, 84, 0.4) !important;
+            }
+            
+            .btn-outline:hover {
+                background: rgba(255,255,255,0.1) !important;
+                transform: translateY(-2px);
+            }
+            
+            @media (max-width: 768px) {
+                .header-buttons {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                
+                .header-buttons .btn {
+                    width: 80%;
+                    max-width: 250px;
+                    margin: 5px 0;
+                }
+                
+                h1 {
+                    font-size: 2.5rem !important;
+                }
+                
+                p {
+                    font-size: 1.1rem !important;
+                }
+            }
+        </style>
+    </header>
+
+    <!-- Matrix Content -->
+    <section class="matrix-container">
+        <div class="matrix-table-container">
+            <div class="table-wrapper">
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <span>Loading matrix data...</span>
+                </div>
+                <table id="matrix-table">
+                    <!-- Table will be populated by JavaScript -->
+                </table>
+            </div>
+        </div>
+    </section>
+
+  <!-- Footer -->
+<footer class="footer">
+      <div class="container">
+          <div class="footer-content" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+              <div class="footer-about" style="flex: 1; min-width: 300px; margin-bottom: 30px;">
+                  <h3>About AMIMUN</h3>
+                  <p>AMIMUN is one of India's most prestigious Model United Nations conferences, bringing together young minds to engage in diplomacy and debate on global issues.</p>
+              </div>
+              <div class="footer-links" style="margin-left: auto; min-width: 200px;">
+                  <h3>Quick Links</h3>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                      <li style="margin-bottom: 10px;"><a href="index.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Home</a></li>
+                      <li style="margin-bottom: 10px;"><a href="why-amimun.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">About Us</a></li>
+                      <li style="margin-bottom: 10px;"><a href="secretariat.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Our Team</a></li>
+                      <li style="margin-bottom: 10px;"><a href="committees.html" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Committees</a></li>
+                      <li><a href="#contact" style="color: #fff; text-decoration: none; transition: color 0.3s ease;">Contact Us</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="footer-bottom">
+              <p style="color: white;">&copy; 2026 AMIMUN. All Rights Reserved. | Designed by AMIMUN Web Operations Team</p>
+          </div>
+      </div>
+  </footer>
+
+    <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const filePath = 'Country-Matrix.xlsx'; // adjust if needed
+          const loadingEl = document.getElementById('loading');
+          const tableEl = document.getElementById('matrix-table');
+        
+          let columnWidths = [];
+        
+          // Original functions ensureUI, buildTabs, renderSheet, downloadExcelSheet remain unchanged except:
+          // Remove Download CSV button creation from tools.innerHTML in ensureUI()
+          // Hook downloadExcelSheet to Download Excel button with id 'download-excel'
+        
+          function ensureUI() {
+            let actionBar = document.getElementById('matrix-actions');
+            if (!actionBar) {
+              actionBar = document.createElement('div');
+              actionBar.id = 'matrix-actions';
+              actionBar.style.display = 'flex';
+              actionBar.style.flexDirection = 'column';
+              actionBar.style.padding = '12px 16px';
+              actionBar.style.background = '#fff';
+              actionBar.style.borderBottom = '1px solid #e0e0e0';
+        
+              // Create carousel container
+              const carouselContainer = document.createElement('div');
+              carouselContainer.style.display = 'flex';
+              carouselContainer.style.alignItems = 'center';
+              carouselContainer.style.width = '100%';
+              carouselContainer.style.position = 'relative';
+              carouselContainer.style.marginBottom = '15px';
+        
+              // Create left arrow
+              const leftArrow = document.createElement('button');
+              leftArrow.innerHTML = '❮';
+              leftArrow.style.background = 'none';
+              leftArrow.style.border = 'none';
+              leftArrow.style.fontSize = '20px';
+              leftArrow.style.cursor = 'pointer';
+              leftArrow.style.padding = '0 10px';
+              leftArrow.style.color = '#001F54';
+              leftArrow.style.flexShrink = '0';
+        
+              const tabs = document.createElement('div');
+              tabs.id = 'sheet-tabs';
+              tabs.style.display = 'flex';
+              tabs.style.overflowX = 'auto';
+              tabs.style.scrollBehavior = 'smooth';
+              tabs.style.scrollbarWidth = 'none'; // Hide scrollbar for cleaner look
+              tabs.style.msOverflowStyle = 'none'; // IE and Edge
+              tabs.style.flex = '1';
+              tabs.style.padding = '10px 0';
+        
+              const tools = document.createElement('div');
+              tools.style.display = 'flex';
+              tools.style.gap = '10px';
+              tools.innerHTML = `
+                <input id="matrix-search" type="search" placeholder="Search this sheet…" style="padding:8px 10px;border:1px solid #ddd;border-radius:8px;min-width:220px;">
+               <button id="download-excel" class="btn btn-secondary" style="background: #001F54; border-color: #001F54; margin-right: 5px; color: white;">Download Matrix</button>
+              `;
+        
+              // Create right arrow
+              const rightArrow = document.createElement('button');
+              rightArrow.innerHTML = '❯';
+              rightArrow.style.background = 'none';
+              rightArrow.style.border = 'none';
+              rightArrow.style.fontSize = '20px';
+              rightArrow.style.cursor = 'pointer';
+              rightArrow.style.padding = '0 10px';
+              rightArrow.style.color = '#001F54';
+              rightArrow.style.flexShrink = '0';
+
+              // Add navigation functionality
+              leftArrow.addEventListener('click', () => {
+                tabs.scrollBy({ left: -200, behavior: 'smooth' });
+              });
+
+              rightArrow.addEventListener('click', () => {
+                tabs.scrollBy({ left: 200, behavior: 'smooth' });
+              });
+
+              // Assemble the carousel
+              carouselContainer.appendChild(leftArrow);
+              carouselContainer.appendChild(tabs);
+              carouselContainer.appendChild(rightArrow);
+              
+              actionBar.appendChild(carouselContainer);
+              actionBar.appendChild(tools);
+        
+              const container = document.querySelector('.matrix-table-container');
+              container.prepend(actionBar);
+            }
+          }
+        
+          function buildTabs(sheetNames, onSelect, activeName) {
+            const tabs = document.getElementById('sheet-tabs');
+            tabs.innerHTML = '';
+            sheetNames.forEach(name => {
+              const btn = document.createElement('button');
+              btn.textContent = name;
+              btn.style.padding = '6px 10px';
+              btn.style.borderRadius = '16px';
+              btn.style.border = '1px solid #cfd8e3';
+              btn.style.background = name === activeName ? 'var(--primary-color)' : '#fff';
+              btn.style.color = name === activeName ? '#fff' : '#0b1f44';
+              btn.style.fontWeight = '600';
+              btn.style.cursor = 'pointer';
+              btn.addEventListener('click', () => onSelect(name));
+              tabs.appendChild(btn);
+            });
+          }
+        
+          function renderSheet(sheet, options = {}) {
+            const { filterText = '' } = options;
+            const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: true });
+        
+            const q = filterText.trim().toLowerCase();
+            const filtered = q
+              ? rows.filter((r, i) => i === 0 || r.some(cell => String(cell ?? '').toLowerCase().includes(q)))
+              : rows;
+        
+            tableEl.innerHTML = '';
+        
+            if (columnWidths.length === 0) {
+              filtered.forEach(row => {
+                row.forEach((cell, colIndex) => {
+                  const cellLength = String(cell ?? '').length;
+                  columnWidths[colIndex] = Math.max(columnWidths[colIndex] || 0, cellLength);
+                });
+              });
+            }
+        
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+        
+            filtered.forEach((row, idx) => {
+              const tr = document.createElement('tr');
+              row.forEach((cell, colIndex) => {
+                const el = document.createElement(idx === 0 ? 'th' : 'td');
+                el.textContent = cell == null ? '' : String(cell);
+        
+                if (columnWidths[colIndex]) {
+                  el.style.minWidth = `${Math.min(columnWidths[colIndex] * 8 + 20, 300)}px`;
+                  el.style.maxWidth = '300px';
+                  el.style.overflow = 'hidden';
+                  el.style.textOverflow = 'ellipsis';
+                  el.style.whiteSpace = 'nowrap';
+                }
+                tr.appendChild(el);
+              });
+              if (idx === 0) thead.appendChild(tr);
+              else tbody.appendChild(tr);
+            });
+        
+            tableEl.appendChild(thead);
+            tableEl.appendChild(tbody);
+            tableEl.style.tableLayout = 'fixed';
+        
+            if (loadingEl) loadingEl.style.display = 'none';
+            tableEl.style.display = 'table';
+          }
+        
+          function downloadExcelSheet(sheet, name = 'sheet') {
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, sheet, name);
+            XLSX.writeFile(wb, `${name}.xlsx`);
+          }
+        
+          async function init() {
+            ensureUI();
+            if (loadingEl) loadingEl.style.display = 'flex';
+        
+            columnWidths = [];
+        
+            const res = await fetch(filePath);
+            if (!res.ok) throw new Error(`HTTP ${res.status} loading ${filePath}`);
+            const buf = await res.arrayBuffer();
+        
+            const wb = XLSX.read(buf, { type: 'array' });
+            if (!wb.SheetNames?.length) throw new Error('No worksheets found');
+        
+            let activeName = wb.SheetNames[0];
+            buildTabs(wb.SheetNames, selectSheet, activeName);
+        
+            function selectSheet(name) {
+              activeName = name;
+              const sheet = wb.Sheets[name];
+              const search = document.getElementById('matrix-search');
+              renderSheet(sheet, { filterText: search?.value || '' });
+              buildTabs(wb.SheetNames, selectSheet, activeName);
+        
+              const dl = document.getElementById('download-excel');
+              if (dl) {
+                dl.onclick = () => downloadExcelSheet(sheet, name);
+              }
+            }
+        
+            const search = document.getElementById('matrix-search');
+            if (search) {
+              let t;
+              search.addEventListener('input', () => {
+                clearTimeout(t);
+                t = setTimeout(() => selectSheet(activeName), 150);
+              });
+            }
+        
+            selectSheet(activeName);
+        
+            // Top hero section download button that downloads full excel file
+            const downloadFullBtn = document.getElementById('download-csv');
+            if (downloadFullBtn) {
+              downloadFullBtn.textContent = 'Download Excel';
+              downloadFullBtn.onclick = (e) => {
+                e.preventDefault();
+                const link = document.createElement('a');
+                link.href = filePath;
+                link.download = 'Country-Matrix.xlsx';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              };
+            }
+          }
+        
+          init().catch(err => {
+            console.error(err);
+            if (loadingEl) {
+              loadingEl.innerHTML = `
+                  <div style="text-align:center; padding:20px;">
+                    <i class="fas fa-exclamation-triangle" style="font-size:2rem; color:#e74c3c; margin-bottom:10px;"></i>
+                    <p>Failed to load matrix: ${err.message}</p>
+                  </div>
+                  `;
+            }
+          });
+        });
+        </script>    
+</body>
+</html>

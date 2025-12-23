@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMIMUN 2026 - 15th Edition</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="theme-color" content="#001f54" />
+    <meta name="mobile-web-app-capable" content="yes" />
+  </head>
+  <style>
+    /* Add hover effect for the image */
+    .welcome-card-content img:hover {
+      transform: scale(1.02);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .welcome-card-content {
+        flex-direction: column;
+      }
+      .welcome-card-content > div {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+      }
+
+      /* Mobile footer styles */
+      .footer-content {
+        flex-direction: column !important;
+        padding: 20px 15px !important;
+      }
+      .footer-about,
+      .footer-links {
+        min-width: 100% !important;
+        margin: 0 0 25px 0 !important;
+        text-align: center;
+      }
+      .footer-links {
+        margin-left: 0 !important;
+        margin-top: 15px !important;
+      }
+      .footer-bottom p {
+        text-align: center !important;
+        font-size: 0.9rem !important;
+        padding: 0 10px !important;
+        line-height: 1.5 !important;
+      }
+      .footer h3 {
+        margin-bottom: 15px !important;
+        font-size: 1.3rem !important;
+      }
+      .footer p,
+      .footer a {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+      }
+      .footer-links ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+      }
+      .footer-links li {
+        margin: 0 10px 10px 0 !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Welcome Section Mobile Optimization */
+      .welcome-section {
+        padding: 30px 0 !important;
+        margin-top: 0 !important;
+      }
+
+      .welcome-section .container {
+        padding: 0 15px !important;
+      }
+
+      .welcome-card {
+        margin: 20px 0 !important;
+        padding: 20px 15px !important;
+      }
+
+      .welcome-card-content {
+        padding: 0 !important;
+        gap: 20px !important;
+      }
+
+      /* Fix the photo container */
+      .welcome-card-content > div:first-child {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      /* Fix the text container */
+      .welcome-card-content > div:last-child {
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      /* Ensure paragraphs don't overflow */
+      .welcome-card-content p {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 10px 0 !important;
+        text-align: justify !important;
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+      }
+
+      /* Fix signature box */
+      .signature {
+        margin-top: 15px !important;
+        padding: 12px !important;
+      }
+
+      .signature p {
+        text-align: center !important;
+        font-size: 0.95rem !important;
+      }
+
+      /* Fix image container */
+      .welcome-card-content img {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+
+      /* Fix quote styling on mobile */
+      .welcome-card-content > div:last-child > p:first-child {
+        font-size: 1rem !important;
+        padding-left: 10px !important;
+        margin-top: 0 !important;
+      }
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      /* Make logo and text smaller in mobile navbar */
+      .navbar .logo img {
+        height: 30px !important;
+      }
+      .navbar .logo span {
+        font-size: 1.2rem !important;
+      }
+      /* Make mobile logo smaller */
+      .mobile-logo-container img {
+        max-width: 150px !important;
+      }
+      .welcome-card-content p {
+        text-align: justify !important;
+        font-size: 0.95em !important;
+        line-height: 1.5;
+        margin: 10px 0 !important;
+      }
+      .mun-title {
+        font-size: 1.2rem !important;
+        line-height: 1.3 !important;
+      }
+      /* Contact section mobile styles */
+      .contact-flexbox {
+        flex-direction: column;
+        gap: 30px !important;
+      }
+      .core-team-contacts {
+        grid-template-columns: 1fr !important;
+        width: 100%;
+        max-width: 100% !important;
+      }
+      .team-contact {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+      .contact-info,
+      .core-team-contacts {
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+      }
+      .mobile-logo-container {
+        display: block !important;
+      }
+      .globe-container {
+        display: none;
+      }
+      .hero {
+        min-height: auto;
+        padding: 80px 0 60px;
+        height: auto;
+        display: block;
+      }
+      .hero .container {
+        display: block;
+        grid-template-columns: 1fr;
+        padding-bottom: 0;
+        position: relative;
+      }
+      .hero-content {
+        text-align: center;
+        padding: 20px 0 30px;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin: 25px 0;
+        position: relative;
+        z-index: 3;
+      }
+      .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+      }
+      .scroll-down {
+        display: none;
+      }
+      h1,
+      h2,
+      h3 {
+        word-wrap: break-word;
+      }
+
+      /* Countdown mobile styles */
+      .countdown-section {
+        padding: 20px 0 !important;
+        margin: 20px 0 !important;
+      }
+      .countdown-section h2 {
+        font-size: 1.4rem !important;
+        margin-bottom: 10px !important;
+      }
+      .countdown-section p {
+        font-size: 1rem !important;
+        margin: 10px 0 15px !important;
+        padding: 8px 15px !important;
+      }
+      .countdown-container {
+        flex-wrap: nowrap !important;
+        gap: 8px !important;
+        padding: 0 10px !important;
+        max-width: 100% !important;
+      }
+      .countdown-item {
+        padding: 8px 5px !important;
+        min-width: auto !important;
+        flex: 1;
+      }
+      .countdown-number {
+        font-size: 1.5rem !important;
+        margin-bottom: 2px !important;
+      }
+      .countdown-label {
+        font-size: 0.7rem !important;
+        letter-spacing: 1px !important;
+      }
+    }
+    .agendas-marquee-container {
+      overflow: hidden;
+      width: 100%;
+      background: linear-gradient(
+        135deg,
+        #001f54 0%,
+        #003d82 50%,
+        #00539c 100%
+      );
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 31, 84, 0.15);
+      border-top: 3px solid #1282a2;
+      border-bottom: 3px solid #1282a2;
+      margin: 0;
+      padding: 0 20px;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Subtle animated overlay for depth */
+    .agendas-marquee-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.03) 50%,
+        transparent 100%
+      );
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        left: -100%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+
+    .agendas-marquee-track {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      width: max-content;
+      animation: marquee-scroll 30s linear infinite;
+      will-change: transform;
+      height: 100%;
+    }
+
+    @keyframes marquee-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      padding: 14px 45px;
+      margin: 0 20px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      position: relative;
+      gap: 12px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Professional icon styling */
+    .pulse-icon {
+      display: inline-block;
+      font-size: 1.3em;
+      animation: gentlePulse 2.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 8px rgba(18, 130, 162, 0.6));
+    }
+
+    .pulse-icon:last-child {
+      animation-delay: 1.25s;
+    }
+
+    @keyframes gentlePulse {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.9;
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: 1;
+      }
+    }
+
+    /* Elegant hover effect */
+    .marquee-item:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 4px 15px rgba(18, 130, 162, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .agendas-marquee-container {
+        min-height: 60px;
+        padding: 0 10px;
+        border-top: 2px solid #1282a2;
+        border-bottom: 2px solid #1282a2;
+      }
+
+      .marquee-item {
+        font-size: 1.1rem;
+        padding: 10px 30px;
+        margin: 0 12px;
+        letter-spacing: 1px;
+      }
+
+      .pulse-icon {
+        font-size: 1.1em;
+      }
+
+      .agendas-marquee-track {
+        animation: marquee-scroll 25s linear infinite;
+      }
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Video layer */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 1.2s ease;
+      pointer-events: none;
+    }
+
+    /* Content overlay */
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      transition: opacity 1s ease;
+    }
+
+    /* Active state */
+    .hero.show-video .hero-video {
+      opacity: 1;
+    }
+
+    .hero.show-video .hero-overlay {
+      opacity: 0;
+    }
+
+    /*Video contact details */
+    .contact-video-bg {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  color: white;
+}
+
+.contact-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.contact-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+.contact-overlay-content {
+  position: relative;
+  z-index: 2;
+}
+.contact-overlay-content {
+  position: relative;
+  z-index: 2;
+}
+.contact-flexbox {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+  margin-top: 40px;
+}
+.team-contact,
+.contact-info {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+}
+.contact-section h2,
+.contact-section h3,
+.contact-section h4,
+.contact-section p,
+.contact-section a {
+  color: white;
+}
+
+.contact-section a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .contact-flexbox {
+    grid-template-columns: 1fr;
+  }
+}
+
+  </style>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="logo">
+          <img
+            src="images/home/Amity_University_logo.png"
+            alt="Amity University Logo"
+            style="
+              height: 40px;
+              width: auto;
+              margin-right: 10px;
+              vertical-align: middle;
+            "
+          />
+          <span style="vertical-align: middle">AMIMUN'26</span>
+        </a>
+        <div class="nav-toggle" id="navToggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item">
+            <a href="#home" class="nav-link active">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#about" class="nav-link"
+              >About Us <i class="fas fa-chevron-down"></i
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="why-amimun.html">Why AMIMUN</a></li>
+              <li><a href="beyond-amimun.html">Beyond AMIMUN</a></li>
+              <li><a href="newsletter.html">Newsletter</a></li>
+              <li><a href="chronicles.html">AMIMUN Chronicles</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#team" class="nav-link"
+              >Our Team <i class="fas fa-chevron-down"></i
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="guiding-light.html">Our Guiding Light</a></li>
+              <li><a href="advisory-board.html">Advisory Board</a></li>
+              <li><a href="secretariat.html">Secretariat</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="committees.html" class="nav-link">Committees</a>
+          </li>
+          <li class="nav-item">
+            <a href="matrix.html" class="nav-link">Matrix</a>
+          </li>
+          <li class="nav-item">
+            <a href="club.html" class="nav-link">Club</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="video-hero" class="hero" id="home">
+      <!-- VIDEO LAYER (hidden initially) -->
+      <video
+        id="heroVideo"
+        class="hero-video"
+        src="./video/Amimun'26 Teaser.mp4"
+        muted
+        playsinline
+        preload="auto"
+        loop
+      ></video>
+
+      <!-- EXISTING CONTENT -->
+      <div class="container hero-overlay" id="heroContent">
+        <div class="hero-content">
+          <h1 style="font-size: clamp(1.5rem, 6vw, 2.5rem); line-height: 1.2">
+            15th Edition of<br />
+            <span
+              class="mun-title"
+              style="
+                font-size: clamp(1rem, 4vw, 1.8rem);
+                display: inline-block;
+                margin-top: 10px;
+              "
+            >
+              AMITY INTERNATIONAL<br />MODEL UNITED NATIONS
+            </span>
+          </h1>
+
+          <p
+            class="tagline"
+            style="
+              color: white;
+              font-size: clamp(0.9rem, 3.5vw, 1rem);
+              max-width: 800px;
+              margin: 15px auto 25px;
+            "
+          >
+            "From debate to dialogue, from words to actions. Diplomacy is about
+            the interest of the people not the power of the state."
+          </p>
+
+          <div class="hero-buttons">
+            <a
+              href="https://www.amity.edu/nspg/AMIMUN2026/Register/DelegateForm.aspx"
+              class="btn btn-primary"
+              target="_blank"
+              >Delegate Form</a
+            >
+            <a
+              href="https://www.amity.edu/nspg/AMIMUN2026/Register/IPForm.aspx"
+              class="btn btn-secondary"
+              target="_blank"
+              >IP Form</a
+            >
+          </div>
+        </div>
+    
+
+        <div class="globe-container">
+          <img src="logo/cropped_circle_image.png" alt="AMIMUN Logo" />
+        </div>
+    </div>
+
+      <div class="scroll-down">
+        <div class="mouse"><div class="wheel"></div></div>
+        <div class="arrow"></div>
+      </div>
+    </section>
+
+    <!-- AGENDAS ARE OUT - Infinite Scrolling Marquee Banner -->
+    <div class="agendas-marquee-container" style="margin: 0; border-radius: 0">
+      <div class="agendas-marquee-track">
+        <span class="marquee-item"
+          ><span class="pulse-icon">📢</span> AGENDAS ARE OUT!
+          <span class="pulse-icon">📢</span></span
+        >
+        <span class="marquee-item"
+          ><span class="pulse-icon">📢</span> AGENDAS ARE OUT!
+          <span class="pulse-icon">📢</span></span
+        >
+        <span class="marquee-item"
+          ><span class="pulse-icon">📢</span> AGENDAS ARE OUT!
+          <span class="pulse-icon">📢</span></span
+        >
+
+        <!-- Duplicated content for seamless infinite loop -->
+        <span class="marquee-item"
+          ><span class="pulse-icon">📢</span> AGENDAS ARE OUT!
+          <span class="pulse-icon">📢</span></span
+        >
+        <span class="marquee-item"
+          ><span class="pulse-icon">📢</span> AGENDAS ARE OUT!
+          <span class="pulse-icon">📢</span></span
+        >
+        <span class="marquee-item"
+          ><span class="pulse-icon">📢</span> AGENDAS ARE OUT!
+          <span class="pulse-icon">📢</span></span
+        >
+      </div>
+    </div>
+
+    <!-- Countdown Section -->
+    <section
+      class="countdown-section"
+      style="
+        background: linear-gradient(135deg, #001f54, #00308f);
+        color: white;
+        padding: 30px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+      "
+    >
+      <div class="container" style="max-width: 480px; margin: 0 auto">
+        <h2
+          style="
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: 700;
+            text-decoration: none !important;
+            border-bottom: none !important;
+          "
+        >
+          AMIMUN'26 STARTS IN:
+        </h2>
+        <p
+          style="
+            font-size: 1.2rem; /* smaller */
+            margin: 20px 0 30px;
+            color: white;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 10px 20px; /* less padding */
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+          "
+        >
+          <i
+            class="far fa-calendar-alt"
+            style="margin-right: 10px; color: #4fc3f7"
+          ></i>
+          January 16-18, 2026
+        </p>
+
+        <div
+          class="countdown-container"
+          style="
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            max-width: 480px; /* reduced max-width */
+            margin: 0 auto;
+          "
+        >
+          <div
+            class="countdown-item"
+            style="
+              background: rgba(255, 255, 255, 0.1);
+              padding: 15px 10px; /* reduced padding */
+              border-radius: 10px;
+              min-width: 100px; /* smaller width */
+              backdrop-filter: blur(5px);
+              border: 1px solid rgba(255, 255, 255, 0.1);
+            "
+          >
+            <div
+              class="countdown-number"
+              id="days"
+              style="
+                font-size: 2.2rem; /* smaller font */
+                font-weight: 700;
+                margin-bottom: 5px;
+                color: white;
+              "
+            >
+              00
+            </div>
+            <div
+              class="countdown-label"
+              style="
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                color: rgba(255, 255, 255, 0.8);
+              "
+            >
+              Days
+            </div>
+          </div>
+
+          <div
+            class="countdown-item"
+            style="
+              background: rgba(255, 255, 255, 0.1);
+              padding: 15px 10px;
+              border-radius: 10px;
+              min-width: 100px;
+              backdrop-filter: blur(5px);
+              border: 1px solid rgba(255, 255, 255, 0.1);
+            "
+          >
+            <div
+              class="countdown-number"
+              id="hours"
+              style="
+                font-size: 2.2rem;
+                font-weight: 700;
+                margin-bottom: 5px;
+                color: white;
+              "
+            >
+              00
+            </div>
+            <div
+              class="countdown-label"
+              style="
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                color: rgba(255, 255, 255, 0.8);
+              "
+            >
+              Hours
+            </div>
+          </div>
+
+          <div
+            class="countdown-item"
+            style="
+              background: rgba(255, 255, 255, 0.1);
+              padding: 15px 10px;
+              border-radius: 10px;
+              min-width: 100px;
+              backdrop-filter: blur(5px);
+              border: 1px solid rgba(255, 255, 255, 0.1);
+            "
+          >
+            <div
+              class="countdown-number"
+              id="minutes"
+              style="
+                font-size: 2.2rem;
+                font-weight: 700;
+                margin-bottom: 5px;
+                color: white;
+              "
+            >
+              00
+            </div>
+            <div
+              class="countdown-label"
+              style="
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                color: rgba(255, 255, 255, 0.8);
+              "
+            >
+              Minutes
+            </div>
+          </div>
+
+          <div
+            class="countdown-item"
+            style="
+              background: rgba(255, 255, 255, 0.1);
+              padding: 15px 10px;
+              border-radius: 10px;
+              min-width: 100px;
+              backdrop-filter: blur(5px);
+              border: 1px solid rgba(255, 255, 255, 0.1);
+            "
+          >
+            <div
+              class="countdown-number"
+              id="seconds"
+              style="
+                font-size: 2.2rem;
+                font-weight: 700;
+                margin-bottom: 5px;
+                color: white;
+              "
+            >
+              00
+            </div>
+            <div
+              class="countdown-label"
+              style="
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                color: rgba(255, 255, 255, 0.8);
+              "
+            >
+              Seconds
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section
+      class="welcome-section"
+      id="about"
+      style="margin-top: 10px; padding-top: 50px"
+    >
+      <div class="container">
+        <h2>Welcome to AMIMUN '26</h2>
+        <div class="welcome-card">
+          <div
+            class="welcome-card-content"
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              gap: 30px;
+              align-items: flex-start;
+            "
+          >
+            <!-- Secretary General's Photo -->
+            <div style="flex: 0 0 400px; max-width: 100%">
+              <!-- Increased to 400px -->
+              <div
+                style="
+                  border-radius: 10px;
+                  overflow: hidden;
+                  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                "
+              >
+                <img
+                  src="images/home/sg.jpg"
+                  alt="Debanjan Dasgupta - Secretary General, AMIMUN'26"
+                  style="
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                    transition: transform 0.3s ease;
+                  "
+                />
+              </div>
+              <div
+                class="signature"
+                style="
+                  text-align: center;
+                  margin-top: 20px;
+                  padding: 15px;
+                  background: #f8f9fa;
+                  border-radius: 8px;
+                "
+              >
+                <p
+                  style="
+                    margin: 0;
+                    font-weight: 600;
+                    color: #001f54;
+                    font-size: 1.1rem;
+                  "
+                >
+                  Debanjan Dasgupta
+                </p>
+                <p style="margin: 5px 0 0; color: #666; font-size: 1rem">
+                  Secretary General, AMIMUN'26
+                </p>
+              </div>
+            </div>
+
+            <!-- Welcome Message -->
+            <div style="flex: 1; min-width: 300px">
+              <p
+                style="
+                  font-size: 1.2rem;
+                  font-weight: bold;
+                  color: #001f54;
+                  border-left: 4px solid #1282a2;
+                  padding-left: 15px;
+                  margin-top: 0;
+                "
+              >
+                “The price of excellence is discipline. The cost of mediocrity
+                is disappointment.” – William Arthur Ward.
+              </p>
+              <p>
+                This reminder reflects the essence of AMIMUN’26. True excellence
+                in governance, diplomacy, or personal growth rests on
+                discipline: the discipline to learn with humility, act with
+                integrity, and persevere with resilience. Without it, ambition
+                falters, and what remains is mediocrity, bringing only
+                disappointment.
+              </p>
+              <p>
+                It is in this spirit that I, Debanjan Dasgupta,
+                Secretary-General of AMIMUN’26, welcome you all to the 15th
+                edition of the Amity International Model United Nations. From
+                January 16th to 18th, 2026, at Amity University, Uttar Pradesh,
+                I envision AMIMUN’26 as a platform where young minds unite in
+                diplomacy, dialogue, and discovery anchored in discipline and
+                driven toward excellence.
+              </p>
+              <p>
+                Virtus Per Disciplinam-“Excellence through Discipline”, the
+                theme of this year, reminds us that true leadership is not
+                merely defined by rhetoric or ambition, but by the unwavering
+                consistency to strive for meaningful impact, the resilience to
+                overcome adversity, and the steadfast discipline to remain
+                anchored in our principles. Discipline serves as the compass
+                that directs us toward responsibility, clarity, and advancement
+                at a time when divides and diversions sometimes impair judgment.
+                We foster excellence in ourselves and the communities we serve
+                by practicing this discipline of thinking, action, and purpose.
+              </p>
+              <p>
+                At AMIMUN, we believe that discipline is the cornerstone of true
+                leadership, shaping individuals who are principled, steadfast,
+                and prepared to confront the complexities of our world. By
+                guiding delegates to think with discernment, listen earnestly,
+                and act with integrity, this platform transforms every dialogue
+                into an experience that cultivates perseverance, patience, and
+                meaningful growth.
+              </p>
+              <p>
+                This edition is based on the direction and unwavering support of
+                our Founder President, Dr. Ashok K. Chauhan Sir, Chancellor Atul
+                Chauhan Sir, Vice Chancellor Prof. (Dr.) Balvinder Shukla Ma'am,
+                Additional Pro-Vice Chancellor Sanjeev Bansal Sir, Chairperson
+                Dr. Laxmi Ahuja Ma'am, and Co-Chairperson Dr. Sumitra Singh
+                Ma'am. For this, I am incredibly grateful.
+              </p>
+              <p>
+                Come celebrate with us at AMIMUN’26 as we continue a tradition
+                of excellence, molded not by accident but by the discipline that
+                defines greatness, inspires purpose, and drives leadership.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section class="sponsors-section">
+      <div class="container">
+        <h2>Our Previous Sponsors</h2>
+        <div class="sponsors-carousel">
+          <div class="sponsors-track">
+            <!-- First Set of Sponsors -->
+            <div class="sponsor-card">
+              <img src="sponsors/amar ujala.png" alt="Amar Ujala" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/ayouthveda.png" alt="A Youth Veda" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/collegedunia.png" alt="College Dunia" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/heforshe.jpg" alt="HeForShe" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/helpageindia.png" alt="HelpAge India" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/nescafe.jpg" alt="Nescafé" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/peta.jpg" alt="PETA" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/phil-group.png" alt="Phil Group" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/global-compact.webp" alt="UN Global" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/shahnaz.jpg" alt="Shahnaz" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/unesco.jpg" alt="UNESCO" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/unhcr.png" alt="UNHCR" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/unicef.png" alt="UNICEF" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/UNwomen.png" alt="UN Women" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/UNacademic.png" alt="UN Academic Impact" />
+            </div>
+
+            <!-- Duplicated Set for Seamless Loop -->
+            <div class="sponsor-card">
+              <img src="sponsors/amar ujala.png" alt="Amar Ujala" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/ayouthveda.png" alt="A Youth Veda" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/collegedunia.png" alt="College Dunia" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/heforshe.jpg" alt="HeForShe" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/helpageindia.png" alt="HelpAge India" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/nescafe.jpg" alt="Nescafé" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/peta.jpg" alt="PETA" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/phil-group.png" alt="Phil Group" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/global-compact.webp" alt="UN Global" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/shahnaz.jpg" alt="Shahnaz" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/unesco.jpg" alt="UNESCO" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/unhcr.png" alt="UNHCR" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/unicef.png" alt="UNICEF" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/UNwomen.png" alt="UN Women" />
+            </div>
+            <div class="sponsor-card">
+              <img src="sponsors/UNacademic.png" alt="UN Academic Impact" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Outcomes Section -->
+    <section class="learning-outcomes" id="learning">
+      <div class="container">
+        <h2>What You'll Learn at AMIMUN</h2>
+        <div class="cards-container">
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-globe-americas"></i>
+            </div>
+            <h3>Global Awareness</h3>
+            <p>
+              Develop a deeper understanding of international relations, global
+              issues, and the workings of the United Nations.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3>Public Speaking</h3>
+            <p>
+              Enhance your ability to articulate thoughts clearly and
+              persuasively in front of an audience.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3>Diplomacy</h3>
+            <p>
+              Learn the art of negotiation, compromise, and building consensus
+              among diverse perspectives.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>Critical Thinking</h3>
+            <p>
+              Analyze complex issues, evaluate solutions, and think on your feet
+              during debates.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Teamwork</h3>
+            <p>
+              Collaborate with peers to draft resolutions and work towards
+              common goals.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <h3>Leadership</h3>
+            <p>
+              Develop leadership skills by taking initiative and guiding your
+              committee towards solutions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <div class="contact-flexbox">
+          <div class="contact-info">
+            <h3>Get in Touch</h3>
+            <p>
+              Reach out to our Secretariat directly for any queries regarding
+              AMIMUN 2026.
+            </p>
+            <div class="contact-details" style="margin-top: 22px">
+              <p>
+                <i class="fas fa-map-marker-alt"></i> Amity University, Sector
+                125, Noida, Uttar Pradesh 201313
+              </p>
+              <p><i class="fas fa-envelope"></i>infoamimun26@gmail.com</p>
+            </div>
+            <div class="social-links" style="margin-top: 18px">
+              <a
+                href="https://tinyurl.com/5cnyppkt"
+                class="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://tinyurl.com/mme9b4nj"
+                class="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="core-team-contacts">
+            <div class="team-contact">
+              <h4>Debanjan Dasgupta</h4>
+              <p>
+                Secretary General<br />sgamimun@gmail.com<br /><i
+                  class="fas fa-phone"
+                ></i>
+                <a href="tel:+918305196745">+91 83051 96745</a>
+              </p>
+            </div>
+            <div class="team-contact">
+              <h4>Abhijeet Singh</h4>
+              <p>
+                Director General<br />dgamimun@gmail.com<br /><i
+                  class="fas fa-phone"
+                ></i>
+                <a href="tel:+916006229272">+91 60062 29272</a>
+              </p>
+            </div>
+            <div class="team-contact">
+              <h4>Saksham Shivasish</h4>
+              <p>
+                Deputy Director General<br />dgamimun@gmail.com<br /><i
+                  class="fas fa-phone"
+                ></i>
+                <a href="tel:+916205521629">+91 62055 21629</a>
+              </p>
+            </div>
+            <div class="team-contact">
+              <h4>Sanchit Agarwal</h4>
+              <p>
+                USG Delegate Affairs<br />infoamimun26@gmail.com<br /><i
+                  class="fas fa-phone"
+                ></i>
+                <a href="tel:+917011622175">+91 70116 22175</a>
+              </p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>  -->
+    <section class="contact-section contact-video-bg" id="contact">
+
+  <!-- Background Video -->
+  <video
+    class="contact-bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+  >
+    <source src="./video/aftermovie.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Dark Overlay -->
+  <div class="contact-video-overlay"></div>
+
+  <!-- CONTENT OVER VIDEO -->
+  <div class="container contact-overlay-content">
+
+    <h2>Contact Us</h2>
+
+    <div class="contact-flexbox">
+
+      <!-- LEFT -->
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <p>
+          Reach out to our Secretariat directly for any queries regarding
+          AMIMUN 2026.
+        </p>
+
+        <div class="contact-details">
+          <p>
+            <i class="fas fa-map-marker-alt"></i>
+            Amity University, Sector 125, Noida, Uttar Pradesh 201313
+          </p>
+          <p>
+            <i class="fas fa-envelope"></i>
+            infoamimun26@gmail.com
+          </p>
+        </div>
+
+        <div class="social-links">
+          <a href="https://tinyurl.com/5cnyppkt" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://tinyurl.com/mme9b4nj" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="core-team-contacts">
+        <div class="team-contact">
+          <h4>Debanjan Dasgupta</h4>
+          <p>Secretary General<br>sgamimun@gmail.com<br>
+            <i class="fas fa-phone"></i>
+            <a href="tel:+918305196745">+91 83051 96745</a>
+          </p>
+        </div>
+
+        <div class="team-contact">
+          <h4>Abhijeet Singh</h4>
+          <p>Director General<br>dgamimun@gmail.com<br>
+            <i class="fas fa-phone"></i>
+            <a href="tel:+916006229272">+91 60062 29272</a>
+          </p>
+        </div>
+
+        <div class="team-contact">
+          <h4>Saksham Shivasish</h4>
+          <p>Deputy Director General<br>dgamimun@gmail.com<br>
+            <i class="fas fa-phone"></i>
+            <a href="tel:+916205521629">+91 62055 21629</a>
+          </p>
+        </div>
+
+        <div class="team-contact">
+          <h4>Sanchit Agarwal</h4>
+          <p>USG Delegate Affairs<br>infoamimun26@gmail.com<br>
+            <i class="fas fa-phone"></i>
+            <a href="tel:+917011622175">+91 70116 22175</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- Map Section -->
+    <section
+      class="map-section"
+      style="padding: 40px 0; background-color: #f8f9fa"
+    >
+      <div class="container">
+        <h2
+          style="
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+          "
+        >
+          Our Location
+        </h2>
+        <div
+          class="map-container"
+          style="
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+          "
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.227693272734!2d77.3305336!3d28.5439153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce44e80a9461b%3A0x302ec8d3d5cb8d1a!2sAmity%20University!5e0!3m2!1sen!2sin!4v1630000000000!5m2!1sen!2sin"
+            width="100%"
+            height="300"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div
+          class="footer-content"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 0;
+          "
+        >
+          <div
+            class="footer-about"
+            style="
+              flex: 1;
+              min-width: 300px;
+              margin-bottom: 30px;
+              padding: 0 15px;
+            "
+          >
+            <h3>About AMIMUN</h3>
+            <p>
+              AMIMUN is one of India's most prestigious Model United Nations
+              conferences, bringing together young minds to engage in diplomacy
+              and debate on global issues.
+            </p>
+          </div>
+          <div
+            class="footer-links"
+            style="margin-left: auto; min-width: 200px; padding: 0 15px"
+          >
+            <h3>Quick Links</h3>
+            <ul style="list-style: none; padding: 0; margin: 0">
+              <li style="margin-bottom: 10px">
+                <a
+                  href="#home"
+                  style="
+                    color: #fff;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                  "
+                  >Home</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                <a
+                  href="#about"
+                  style="
+                    color: #fff;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                  "
+                  >About Us</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                <a
+                  href="secretariat.html"
+                  style="
+                    color: #fff;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                  "
+                  >Our Team</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                <a
+                  href="committees.html"
+                  style="
+                    color: #fff;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                  "
+                  >Committees</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  style="
+                    color: #fff;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                  "
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="footer-bottom"
+          style="
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            margin-top: 20px;
+          "
+        >
+          <p style="color: white">
+            &copy; 2026 AMIMUN. All Rights Reserved. | Designed by AMIMUN Web
+            Operations Team
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" id="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const track = document.querySelector(".sponsors-track");
+        if (!track) return;
+
+        // Duplicate items for seamless loop
+        const children = Array.from(track.children);
+        children.forEach((child) => {
+          track.appendChild(child.cloneNode(true));
+        });
+
+        let pos = 0;
+        let speed = 4.0;
+        let isHovered = false;
+        let lastTime = null;
+        let rafId = null;
+
+        function animate(time) {
+          if (!lastTime) lastTime = time;
+          const deltaTime = Math.min(100, time - lastTime);
+          lastTime = time;
+
+          if (!isHovered) {
+            pos += speed * (deltaTime / 16.67);
+            const halfTrackWidth = track.scrollWidth / 2;
+            if (pos >= halfTrackWidth) pos = 0;
+            track.style.transform = `translateX(${-pos}px)`;
+          }
+
+          rafId = requestAnimationFrame(animate);
+        }
+
+        // Hover handlers
+        track.addEventListener("mouseenter", () => {
+          isHovered = true;
+        });
+
+        track.addEventListener("mouseleave", () => {
+          isHovered = false;
+          lastTime = performance.now();
+        });
+
+        // Start animation
+        rafId = requestAnimationFrame(animate);
+
+        // Clean up
+        window.addEventListener("beforeunload", () => {
+          if (rafId) cancelAnimationFrame(rafId);
+        });
+
+        // Start animation loop
+        requestAnimationFrame(animate);
+      });
+
+      // Set the date we're counting down to (January 16, 2026 09:00:00)
+      const countDownDate = new Date("Jan 16, 2026 09:00:00").getTime();
+
+      // Update the countdown every 1 second
+      const x = setInterval(function () {
+        // Get today's date and time
+        const now = new Date().getTime();
+
+        // Find the distance between now and the countdown date
+        const distance = countDownDate - now;
+
+        // If countdown is over, stop the timer
+        if (distance < 0) {
+          clearInterval(x);
+          document.querySelector(".countdown-container").innerHTML =
+            '<div style="font-size: 2rem; font-weight: 700; color: #fff;">The event has started!</div>';
+          return;
+        }
+
+        // Time calculations for days, hours, minutes and seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result
+        document.getElementById("days").textContent = days
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("hours").textContent = hours
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("minutes").textContent = minutes
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("seconds").textContent = seconds
+          .toString()
+          .padStart(2, "0");
+      }, 1000);
+
+      window.addEventListener("load", () => {
+        const hero = document.querySelector(".hero");
+        const video = document.getElementById("heroVideo");
+
+        // Wait 3.5 seconds before switching
+        setTimeout(() => {
+          hero.classList.add("show-video");
+          video.play().catch(() => {
+            // autoplay may fail on some browsers, it's fine
+          });
+        }, 3500);
+      });
+
+      const video = document.getElementById("heroVideo");
+      const navbar = document.querySelector(".navbar");
+      const body = document.body;
+      const hero = document.querySelector(".hero");
+
+      if (video) {
+        // When video starts playing
+        video.addEventListener("play", () => {
+          navbar.classList.add("overlay");
+          body.classList.add("video-active");
+          hero.classList.add("show-video");
+        });
+
+        // When video ends or pauses
+        video.addEventListener("ended", resetNavbar);
+        video.addEventListener("pause", resetNavbar);
+      }
+
+      function resetNavbar() {
+        navbar.classList.remove("overlay");
+        body.classList.remove("video-active");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const hero = document.getElementById("video-hero");
+        const video = document.getElementById("heroVideo");
+        const navbar = document.querySelector(".navbar");
+        const marquee = document.querySelector(".agendas-marquee-container");
+
+        let videoStarted = false;
+
+        // 1️⃣ Start video after delay
+        setTimeout(() => {
+          hero.classList.add("show-video");
+
+          video
+            .play()
+            .then(() => {
+              videoStarted = true;
+              navbar.classList.add("overlay");
+            })
+            .catch((err) => {
+              console.warn("Autoplay blocked:", err);
+            });
+        }, 3500); // 3.5 seconds (adjust if needed)
+
+        // 2️⃣ Scroll-based navbar switch
+        window.addEventListener("scroll", () => {
+          const marqueeTop = marquee.getBoundingClientRect().top;
+
+          if (marqueeTop <= navbar.offsetHeight) {
+            // Past hero → solid navbar
+            navbar.classList.remove("overlay");
+          } else {
+            // Inside hero + video running
+            if (videoStarted) {
+              navbar.classList.add("overlay");
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
