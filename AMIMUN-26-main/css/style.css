@@ -1643,3 +1643,140 @@ body {
 body.video-active {
   padding-top: 0;
 }
+
+/* --- Countdown Section Styles --- */
+.countdown-section {
+    position: relative;
+    /* Path to your uploaded image */
+    background-image: url('../images/home/Counter_BG.png'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll; /* Creates the professional parallax effect */
+    padding: 80px 0;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+/* Neutral Black Overlay */
+.countdown-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Pure Black at 60% opacity - lets colors show through naturally */
+    background: rgba(45, 43, 43, 0.6); 
+    z-index: 1;
+}
+
+/* Content Wrapper */
+.countdown-content {
+    position: relative;
+    z-index: 2; /* Ensures text sits on top of overlay */
+}
+
+.countdown-content h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    letter-spacing: 1px;
+}
+
+/* Date Badge Style */
+.countdown-date {
+    display: inline-block;
+    background: rgba(108, 107, 107, 0.221);
+    backdrop-filter: blur(5px);
+    padding: 10px 30px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.9rem;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.countdown-date i {
+    color: #ffffff; /* Keep the light blue accent only for the icon */
+    margin-right: 10px;
+}
+
+/* Grid Layout */
+.countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+/* The Dark Glass Cards */
+.glass-card {
+    /* Dark semi-transparent background */
+    background: rgba(0, 0, 0, 0.403); 
+    /* The Blur Effect */
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    width: 120px; /* Fixed square shape like reference */
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    background: rgba(40, 40, 40, 0.75);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.timer-number {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 5px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.timer-label {
+    font-size: 0.9rem;
+    color: #b0b0b0; /* Light grey text */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .countdown-section {
+        padding: 50px 0;
+    }
+    
+    .countdown-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .countdown-grid {
+        gap: 15px;
+    }
+
+    .glass-card {
+        width: 100px;
+        height: 110px;
+    }
+
+    .timer-number {
+        font-size: 2.2rem;
+    }
+
+    .timer-label {
+        font-size: 0.7rem;
+    }
+}
